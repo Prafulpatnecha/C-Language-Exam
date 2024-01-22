@@ -17,8 +17,8 @@ void dmy(int n,struct va s1[n],int i)
 	scanf("%d",&s1[i].m);
 	printf("Enter Birthdate Year : ");
 	scanf("%d",&s1[i].y);
-	if(s1[i].y>=1924 && s1[i].y<=2024)
-	{
+	if(s1[i].y>=1924 && s1[i].y<=2023)
+	{	
 		if(s1[i].m>=1 && s1[i].m<=12)
 		{
 			if(s1[i].m!=2 && s1[i].m!=4)
@@ -29,7 +29,7 @@ void dmy(int n,struct va s1[n],int i)
 				}
 				else
 				{
-					printf("In Valid 1 to 31 only\n");
+					printf("In Valid Date 1 to 31 only\n");
 					goto st;	
 				}
 			}
@@ -43,7 +43,7 @@ void dmy(int n,struct va s1[n],int i)
 					}
 					else
 					{
-						printf("In Valid 1 to 28 only\n");
+						printf("In Valid Date 1 to 28 only\n");
 						goto st;
 					}
 				}
@@ -69,8 +69,31 @@ void dmy(int n,struct va s1[n],int i)
 	}
 	else
 	{
-		printf("In Valid Year 1924 to 2024 only\n");
-		goto st;
+		if(s1[i].y==2024)
+		{
+			if(s1[i].m==1)
+			{
+				if(s1[i].d>=1 && s1[i].d<=20)
+				{
+					s1[i].age=s1[i].d;
+				}
+				else
+				{
+					printf("In Valid Date 1 to 20 only\n");
+					goto st;
+				}
+			}
+			else
+			{
+				printf("In Valid Month 1 only\n");
+				goto st;
+			}
+		}
+		else
+		{
+			printf("In Valid Year 1924 to 2024 only\n");
+			goto st;
+		}
 	}
 }
 
@@ -104,13 +127,27 @@ void main()
 	int ok=fileh();
 	for(j=0; j<n; j++)
 	{
-		printf("\nForm Is [%d]\n\n",j+1);
-		printf("Name : %s\n",s1[j].name);
-		printf("Birth Date : %d/%d/%d\n",s1[j].d,s1[j].m,s1[j].y);
-		printf("Age : %d Year\n",s1[j].age);
-		fprintf(ok,"\nForm Is [%d]\n\n",j+1);
-		fprintf(ok,"Name : %s\n",s1[j].name);
-		fprintf(ok,"Birth Date : %d/%d/%d\n",s1[j].d,s1[j].m,s1[j].y);
-		fprintf(ok,"Age : %d Year\n",s1[j].age);
+		if(s1[j].y==2024)
+		{
+			printf("\nForm Is [%d]\n\n",j+1);
+			printf("Name : %s\n",s1[j].name);
+			printf("Birth Date : %d/%d/%d\n",s1[j].d,s1[j].m,s1[j].y);
+			printf("Age : %d Days\n",s1[j].age);
+			fprintf(ok,"\nForm Is [%d]\n\n",j+1);
+			fprintf(ok,"Name : %s\n",s1[j].name);
+			fprintf(ok,"Birth Date : %d/%d/%d\n",s1[j].d,s1[j].m,s1[j].y);
+			fprintf(ok,"Age : %d Days\n",s1[j].age);
+		}
+		else
+		{
+			printf("\nForm Is [%d]\n\n",j+1);
+			printf("Name : %s\n",s1[j].name);
+			printf("Birth Date : %d/%d/%d\n",s1[j].d,s1[j].m,s1[j].y);
+			printf("Age : %d Year\n",s1[j].age);
+			fprintf(ok,"\nForm Is [%d]\n\n",j+1);
+			fprintf(ok,"Name : %s\n",s1[j].name);
+			fprintf(ok,"Birth Date : %d/%d/%d\n",s1[j].d,s1[j].m,s1[j].y);
+			fprintf(ok,"Age : %d Year\n",s1[j].age);
+		}
 	}
 }
