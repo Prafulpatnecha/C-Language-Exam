@@ -107,6 +107,7 @@ void from12()
 		fprintf(ok,"Age : %d Year\n",s1[j].age);
 	}
 }
+
 void main()
 {
 	from12();
